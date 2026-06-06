@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Hexagonal background shape -->
+  <polygon points="100,10 180,55 180,145 100,190 20,145 20,55" fill="#1B3A6B" opacity="0.15"/>
+  <!-- Stylized A mark - outer strokes -->
+  <path d="M100 30 L60 160 L80 160 L100 100 L120 160 L140 160 Z" fill="none" stroke="#1B3A6B" stroke-width="6" stroke-linejoin="round"/>
+  <!-- Inner crossbar -->
+  <line x1="72" y1="120" x2="128" y2="120" stroke="#1B3A6B" stroke-width="6"/>
+  <!-- Gold accent ribbon left -->
+  <path d="M100 30 L60 160 L70 160 L105 50 Z" fill="#C9A84C" opacity="0.85"/>
+  <!-- Gold accent ribbon right -->
+  <path d="M100 30 L140 160 L130 160 L95 50 Z" fill="#C9A84C" opacity="0.85"/>
+  <!-- Gold crossbar accent -->
+  <rect x="73" y="117" width="54" height="6" fill="#C9A84C" opacity="0.85" rx="2"/>
+</svg>
