@@ -1,148 +1,169 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { company } from "@/data/company";
 
 export default function HeroSection() {
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden hex-grid-bg"
+      className="relative min-h-screen flex items-center overflow-hidden"
       style={{ background: "var(--brand-bg)" }}
     >
-      {/* Radial glow behind content */}
+      {/* Subtle hex grid overlay */}
+      <div className="absolute inset-0 hex-grid-bg opacity-60 pointer-events-none" />
+
+      {/* Radial glow left (where headline is) */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute top-1/2 left-0 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 70% 55% at 50% 42%, rgba(27,58,107,0.35) 0%, transparent 70%)",
+            "radial-gradient(circle at center, rgba(27,58,107,0.4) 0%, transparent 70%)",
         }}
       />
 
-      {/* Gold top accent glow */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[2px] blur-sm"
-        style={{ background: "linear-gradient(90deg, transparent, var(--brand-accent), transparent)" }}
-      />
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[calc(100vh-6rem)]">
 
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-6 pt-20">
-        {/* Eyebrow label */}
-        <motion.div
-          className="flex items-center gap-3"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <span
-            className="h-px w-12"
-            style={{ background: "var(--brand-accent)" }}
-          />
-          <span
-            className="font-mono text-xs tracking-[0.3em] uppercase"
-            style={{ color: "var(--brand-accent)" }}
+          {/* ── Left: Text content ──────────────────────────────────────── */}
+          <div className="flex flex-col gap-6 lg:gap-7">
+            {/* Eyebrow */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <span
+                className="font-mono text-xs tracking-[0.3em] uppercase px-3 py-1 rounded-full"
+                style={{
+                  color: "var(--brand-accent)",
+                  border: "1px solid rgba(201,168,76,0.3)",
+                  background: "rgba(201,168,76,0.06)",
+                }}
+              >
+                Arapai Technologies International
+              </span>
+            </motion.div>
+
+            {/* Main headline — "Applied AI.\nIntelligent Systems.\nReal Impact." */}
+            <div className="flex flex-col gap-1">
+              {company.heroHeadline.map((line, i) => {
+                const isAccent = i === company.heroHeadline.length - 1;
+                return (
+                  <motion.h1
+                    key={line}
+                    className="font-display font-extrabold leading-[1.05] tracking-tight"
+                    style={{
+                      fontSize: "clamp(2.4rem, 5vw, 4rem)",
+                      color: isAccent ? "var(--brand-accent)" : "var(--brand-text)",
+                    }}
+                    initial={{ opacity: 0, x: -24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.55, delay: 0.1 + i * 0.1 }}
+                  >
+                    {line}
+                  </motion.h1>
+                );
+              })}
+            </div>
+
+            {/* Description */}
+            <motion.p
+              className="text-base md:text-lg leading-relaxed max-w-xl"
+              style={{ color: "var(--brand-text-muted)" }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.38 }}
+            >
+              {company.description}
+            </motion.p>
+
+            {/* CTA row */}
+            <motion.div
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mt-2"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.5 }}
+            >
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-md font-semibold text-sm transition-all duration-200 glow-accent-hover"
+                style={{ background: "var(--brand-accent)", color: "var(--brand-bg)" }}
+              >
+                Explore Solutions <ArrowRight size={16} />
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-md font-semibold text-sm transition-all duration-200"
+                style={{
+                  border: "1px solid rgba(245,241,232,0.2)",
+                  color: "var(--brand-text)",
+                  background: "transparent",
+                }}
+              >
+                Learn About Us
+              </Link>
+            </motion.div>
+
+            {/* Registration badge */}
+            <motion.div
+              className="flex items-center gap-2 mt-1"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "var(--brand-accent)" }} />
+              <span className="font-mono text-[10px] tracking-wider" style={{ color: "var(--brand-text-muted)" }}>
+                URSB Reg. No. 80034917013941 · Incorporated 2026, Uganda
+              </span>
+            </motion.div>
+          </div>
+
+          {/* ── Right: Logo / brand visual ──────────────────────────────── */}
+          <motion.div
+            className="relative flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Arapai Technologies International Ltd
-          </span>
-          <span
-            className="h-px w-12"
-            style={{ background: "var(--brand-accent)" }}
-          />
-        </motion.div>
+            {/* Outer glow ring */}
+            <div
+              className="absolute inset-0 rounded-2xl"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, rgba(201,168,76,0.12) 0%, transparent 65%)",
+              }}
+            />
 
-        {/* Main headline */}
-        <motion.h1
-          className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight"
-          style={{ color: "var(--brand-text)" }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.1 }}
-        >
-          Engineering the{" "}
-          <span style={{ color: "var(--brand-accent)" }}>Future</span>
-          <br />
-          <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium" style={{ color: "var(--brand-text-muted)" }}>
-            From Africa
-          </span>
-        </motion.h1>
+            {/* Logo mockup image */}
+            <div className="relative w-full max-w-lg aspect-[4/3] rounded-2xl overflow-hidden">
+              <Image
+                src="/logo-mockup.jpg"
+                alt="Arapai Technologies International — office brand"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              {/* Dark overlay gradient for depth */}
+              <div
+                className="absolute inset-0 rounded-2xl"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(7,14,27,0.55) 0%, rgba(7,14,27,0.1) 60%, rgba(7,14,27,0.4) 100%)",
+                }}
+              />
+              {/* Gold border glow */}
+              <div
+                className="absolute inset-0 rounded-2xl"
+                style={{ boxShadow: "inset 0 0 0 1px rgba(201,168,76,0.25), 0 0 60px rgba(201,168,76,0.1)" }}
+              />
+            </div>
+          </motion.div>
 
-        {/* Sub-description */}
-        <motion.p
-          className="text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed"
-          style={{ color: "var(--brand-text-muted)" }}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.22 }}
-        >
-          {company.description}
-        </motion.p>
-
-        {/* CTA buttons */}
-        <motion.div
-          className="flex flex-col sm:flex-row items-center gap-4 mt-2"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.34 }}
-        >
-          <Link
-            href="/portfolio"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-md font-semibold text-base transition-all duration-200 glow-accent-hover"
-            style={{
-              background: "var(--brand-accent)",
-              color: "var(--brand-bg)",
-            }}
-          >
-            Explore Our Work
-            <ArrowRight size={18} />
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-md font-semibold text-base transition-all duration-200"
-            style={{
-              border: "1px solid var(--brand-border)",
-              color: "var(--brand-text)",
-              background: "rgba(255,255,255,0.03)",
-            }}
-          >
-            Get In Touch
-          </Link>
-        </motion.div>
-
-        {/* Registration badge */}
-        <motion.div
-          className="flex items-center gap-2 mt-4 px-4 py-2 rounded-full"
-          style={{
-            border: "1px solid var(--brand-border)",
-            background: "rgba(27,58,107,0.12)",
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: "var(--brand-accent)" }} />
-          <span className="font-mono text-[11px] tracking-wider" style={{ color: "var(--brand-text-muted)" }}>
-            Registered in Uganda · URSB No. 80034917013941
-          </span>
-        </motion.div>
+        </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.1, duration: 0.6 }}
-      >
-        <span className="font-mono text-[10px] tracking-widest uppercase" style={{ color: "var(--brand-text-muted)" }}>
-          Scroll
-        </span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-        >
-          <ChevronDown size={18} style={{ color: "var(--brand-accent)" }} />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

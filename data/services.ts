@@ -1,7 +1,8 @@
 export interface Service {
   id: string;
   title: string;
-  icon: string;           // Lucide icon name
+  icon: string;       // Lucide icon name
+  shortTitle: string; // For nav dropdowns
   description: string;
   highlights: string[];
 }
@@ -9,50 +10,56 @@ export interface Service {
 export const services: Service[] = [
   {
     id: "ai-ml",
-    title: "AI & Machine Learning Systems",
+    title: "AI & Machine Learning",
+    shortTitle: "AI & ML",
     icon: "Brain",
     description:
-      "We design and deploy custom AI models — from computer vision pipelines and NLP systems to predictive analytics engines. Our solutions are built for real African data environments, including low-resource languages and sparse datasets.",
+      "Building predictive and generative AI systems for real-world impact — from custom model training to deployed inference pipelines tailored for African data environments.",
     highlights: ["Custom Model Training", "NLP & Translation", "Predictive Analytics"],
   },
   {
-    id: "iot-embedded",
-    title: "Embedded Systems & IoT",
-    icon: "Cpu",
+    id: "computer-vision",
+    title: "Computer Vision",
+    shortTitle: "Computer Vision",
+    icon: "Eye",
     description:
-      "From RFID readers and smart energy meters to industrial sensors, we develop firmware and hardware-software integration stacks that operate reliably in off-grid and low-infrastructure environments.",
-    highlights: ["Firmware Development", "RFID & Smart Meters", "Off-Grid Deployment"],
-  },
-  {
-    id: "erp-software",
-    title: "Enterprise Software & ERPs",
-    icon: "LayoutGrid",
-    description:
-      "Institution-grade ERP systems tailored for African universities, schools, hospitals, and government agencies. We build modular, offline-first systems that withstand unreliable connectivity and power.",
-    highlights: ["Modular Architecture", "Offline-First Design", "Custom Workflows"],
+      "Advanced vision systems for detection, recognition, and automation — applied across agriculture, manufacturing quality control, and document processing.",
+    highlights: ["Object Detection", "Quality Inspection", "Document OCR"],
   },
   {
     id: "digital-health",
-    title: "Digital Health Solutions",
+    title: "Digital Health",
+    shortTitle: "Digital Health",
     icon: "Heart",
     description:
-      "Technology platforms that extend healthcare access and improve patient outcomes across Uganda and East Africa — from digital records and telemedicine tools to public health data dashboards.",
-    highlights: ["Patient Records", "Telemedicine Integration", "Health Analytics"],
+      "AI-powered tools for diagnosis, monitoring, and healthcare delivery — bridging the gap between clinical expertise and last-mile communities.",
+    highlights: ["Patient Records", "Diagnostic AI", "Health Analytics"],
   },
   {
-    id: "agritech",
-    title: "AgriTech Platforms",
+    id: "smart-agriculture",
+    title: "Smart Agriculture",
+    shortTitle: "Smart Agriculture",
     icon: "Leaf",
     description:
-      "Data-driven platforms that connect smallholder farmers to risk prediction, market information, and financial services. We leverage remote sensing, AI, and mobile-first design to reach the last mile.",
-    highlights: ["Risk Prediction", "Micro-Insurance", "Farmer Mobile Apps"],
+      "Intelligent solutions to improve productivity, quality, and food security for smallholder farmers — integrating AI, remote sensing, and mobile-first platforms.",
+    highlights: ["Crop Risk Prediction", "Micro-Insurance", "Market Linkage"],
   },
   {
-    id: "industrial-automation",
-    title: "Industrial Automation",
-    icon: "Settings",
+    id: "enterprise-systems",
+    title: "Enterprise Systems",
+    shortTitle: "Enterprise Systems",
+    icon: "LayoutGrid",
     description:
-      "Industrial control systems, quality-sorting machines, and process automation solutions built for African manufacturing contexts — integrating computer vision, PLCs, and custom control software.",
-    highlights: ["Computer Vision QA", "PLC Integration", "Process Control"],
+      "Scalable software for institutions, universities, and enterprises — modular, offline-first ERPs and management systems designed for African infrastructure realities.",
+    highlights: ["University ERPs", "Offline-First", "Custom Workflows"],
+  },
+  {
+    id: "energy-access",
+    title: "Energy Access Tech",
+    shortTitle: "Energy Access Tech",
+    icon: "Zap",
+    description:
+      "Innovative systems for reliable, affordable, and sustainable energy management — including prepaid metering, RFID access systems, and smart energy wallets.",
+    highlights: ["Prepaid Metering", "RFID Access", "Energy Wallets"],
   },
 ];

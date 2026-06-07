@@ -28,7 +28,7 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `${company.name} — ${company.shortTagline}`,
+    default: `${company.name} — ${company.tagline}`,
     template: `%s | ${company.name}`,
   },
   description: company.description,
