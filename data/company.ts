@@ -1,5 +1,6 @@
 // Canonical company constants — sourced from URSB registration certificate
 // (Registration No. 80034917013941, issued 2026-05-24, signed by NAKINTU AGNES)
+// Additional details from MoKara pitch deck and Joseph Walusimbi CV
 
 export const company = {
   name: "Arapai Technologies International",
@@ -12,6 +13,8 @@ export const company = {
   registrar: "NAKINTU AGNES, Registrar of Companies",
   authority: "Uganda Registration Services Bureau (URSB)",
   act: "The Companies Act, 2012 — Section 18(3)",
+  poBox: "P.O Box 210383, Kampala, Uganda",
+  officeAddress: "Wakiso, Uganda",
 
   heroHeadline: ["Applied AI.", "Intelligent Systems.", "Real Impact."],
   tagline: "Applied AI. Intelligent Systems. Real Impact.",
@@ -36,10 +39,26 @@ export const company = {
     "Research-Driven Innovation",
   ],
 
+  researchAffiliations: [
+    {
+      name: "DaimariLab",
+      fullName: "Data Science and Machine Learning Lab",
+      url: "https://daimarilab.sun.ac.ug",
+      institution: "Soroti University",
+    },
+    {
+      name: "ET4D Lab",
+      fullName: "Emerging Technologies for Development Lab",
+      url: "https://et4d.sun.ac.ug",
+      institution: "Soroti University",
+    },
+  ],
+
   location: "Soroti, Uganda",
   email: "mrjosephwalusimbi@gmail.com",
-  phone: "+256 700 000 000",
-  linkedin: "https://www.linkedin.com/in/josephwalusimbi-3041a8306",
+  companyEmail: "arapaigroup@gmail.com",
+  phone: "+256 764 123 306",
+  linkedin: "https://www.linkedin.com/in/joseph-walusimbi-3041a8306/",
   twitter: "https://twitter.com/arapaiti",
   github: "https://github.com/arapaiti",
   website: "https://arapaiti.com",

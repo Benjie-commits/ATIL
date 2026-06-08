@@ -10,6 +10,7 @@ import HeroSection from "@/components/HeroSection";
 import PartnersBanner from "@/components/PartnersBanner";
 import StatsBanner from "@/components/StatsBanner";
 import SectionHeader from "@/components/SectionHeader";
+import AwardsSection from "@/components/AwardsSection";
 import { company } from "@/data/company";
 import { services } from "@/data/services";
 import { products } from "@/data/products";
@@ -346,6 +347,8 @@ export default function HomePage() {
       <WhatWeBuildSection />
       <FlagshipSection />
       <StatsBanner />
+      {/* Compact awards strip — highlight-only, full list on About page */}
+      <AwardsSection compact={true} />
       <CTAStrip />
     </>
   );

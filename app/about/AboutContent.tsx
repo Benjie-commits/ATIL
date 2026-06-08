@@ -1,8 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Shield, Zap, Globe, Lightbulb, FileText, Building2, Calendar, Hash } from "lucide-react";
+import { Shield, Zap, Globe, Lightbulb, FileText, Building2, Calendar, Hash, FlaskConical, ExternalLink } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
+import AwardsSection from "@/components/AwardsSection";
+import PublicationsSection from "@/components/PublicationsSection";
+import MediaSection from "@/components/MediaSection";
 import { company } from "@/data/company";
 
 const whyUs = [
@@ -228,6 +231,64 @@ export default function AboutContent() {
           </div>
         </div>
       </section>
+
+      {/* ── Research Affiliations ─────────────────────────────────────────── */}
+      <section
+        className="py-16 md:py-20"
+        style={{ background: "var(--brand-surface)", borderTop: "1px solid var(--brand-border)" }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
+          <SectionHeader
+            label="Research"
+            title="Research Affiliations"
+            subtitle="Arapai is embedded in Soroti University's research ecosystem — translating lab work into deployable technologies."
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {company.researchAffiliations.map((lab, i) => (
+              <motion.a
+                key={lab.name}
+                href={lab.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-lift flex items-start gap-4 p-5 rounded-xl group"
+                style={{ background: "var(--brand-bg)", border: "1px solid var(--brand-border)" }}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+              >
+                <div
+                  className="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ background: "rgba(201,168,76,0.1)", border: "1px solid rgba(201,168,76,0.2)" }}
+                >
+                  <FlaskConical size={20} style={{ color: "var(--brand-accent)" }} />
+                </div>
+                <div className="flex flex-col gap-1 flex-1">
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-display text-base font-bold" style={{ color: "var(--brand-text)" }}>
+                      {lab.name}
+                    </h3>
+                    <ExternalLink size={12} style={{ color: "var(--brand-text-muted)" }} />
+                  </div>
+                  <p className="text-sm" style={{ color: "var(--brand-text-muted)" }}>{lab.fullName}</p>
+                  <p className="font-mono text-[10px] tracking-wider uppercase mt-1" style={{ color: "var(--brand-accent)" }}>
+                    {lab.institution}
+                  </p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Awards ────────────────────────────────────────────────────────── */}
+      <AwardsSection />
+
+      {/* ── Publications ──────────────────────────────────────────────────── */}
+      <PublicationsSection />
+
+      {/* ── Media ─────────────────────────────────────────────────────────── */}
+      <MediaSection />
     </>
   );
 }

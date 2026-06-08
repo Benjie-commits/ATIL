@@ -24,9 +24,11 @@ export const projects: Project[] = [
     name: "MoKara",
     category: "IoT/Energy",
     description:
-      "RFID-based portable prepaid electricity access system with USSD & Mobile Money integration — bringing pay-as-you-go energy to off-grid communities.",
+      "RFID card-based smart electricity access system that decouples energy balances from fixed meters — users carry their balance on a card, topping up via USSD or Mobile Money with no manual token entry. Recognised at national exhibitions and selected for the NCHE Gulu Innovation Showcase.",
+    longDescription:
+      "MoKara replaces the 20-digit token entry system used by Uganda's 1.7M+ prepaid electricity households. Balances are stored on RFID cards tied to portable user accounts — not to a specific meter. Users can relocate without losing purchased credit. Built on ESP32 microcontrollers with relay control, Django backend, USSD gateway, and MoMo API integration. Seeking EUR 150,000 for a 200-unit pilot in Soroti under the Digital Energy Challenge 2026.",
     status: "Active",
-    tags: ["RFID", "IoT", "USSD", "MoMo", "Embedded Systems"],
+    tags: ["RFID", "IoT", "ESP32", "USSD", "MoMo", "Prepaid Energy", "Django"],
   },
   {
     id: "gpawa",
@@ -87,9 +89,11 @@ export const projects: Project[] = [
     name: "Fruit Sorting AI",
     category: "AI/ML",
     description:
-      "Industrial computer-vision fruit quality sorter powered by deep learning — awarded 1st place at Hackathon 4.0+, demonstrating AI-driven post-harvest solutions.",
+      "DenseNet-based computer vision system for automated fruit quality grading and sorting, achieving 98.7% classification accuracy. Awarded Best AgriTech Project at Industry 4.0+ Hackathon and presented at EDIC.",
+    longDescription:
+      "Trained a DenseNet deep learning model on a custom fruit image dataset to classify quality grades with 98.7% accuracy. Integrated with an automated sorting workflow for deployment in post-harvest processing facilities. Demonstrated live at EDIC (Engineering Design Innovation Conference) and won Best AgriTech at the Industry 4.0+ Hackathon hosted by ABQ Cloud Launch.",
     status: "Award-Winning",
-    tags: ["Computer Vision", "Deep Learning", "AgriTech", "Industry 4.0"],
+    tags: ["DenseNet", "Computer Vision", "98.7% Accuracy", "Post-Harvest", "EDIC"],
   },
 ];
 
