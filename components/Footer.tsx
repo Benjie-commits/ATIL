@@ -54,8 +54,17 @@ export default function Footer() {
   return (
     <footer
       className="relative mt-auto"
-      style={{ background: "var(--brand-surface)", borderTop: "1px solid var(--brand-border)" }}
+      style={{ background: "var(--brand-surface)" }}
     >
+      {/* Fade: white CTA above → dark footer */}
+      <div
+        aria-hidden="true"
+        style={{
+          height: 72,
+          background: "linear-gradient(to bottom, #FFFFFF, var(--brand-surface))",
+          marginTop: -1,
+        }}
+      />
       {/* Gold accent line */}
       <div className="h-[2px]" style={{ background: "var(--brand-accent)" }} />
 

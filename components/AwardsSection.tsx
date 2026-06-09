@@ -22,7 +22,6 @@ export default function AwardsSection({ compact = false }: AwardsSectionProps) {
       className={compact ? "py-16 md:py-20" : "py-20 md:py-24"}
       style={{
         background: "var(--brand-bg)",
-        borderTop: "1px solid var(--brand-border)",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">

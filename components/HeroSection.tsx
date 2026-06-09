@@ -13,6 +13,11 @@ export default function HeroSection() {
     >
       {/* Subtle hex grid overlay */}
       <div className="absolute inset-0 hex-grid-bg opacity-60 pointer-events-none" />
+      {/* Section bottom fade — hero bleeds into partners */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none z-10"
+        style={{ background: "linear-gradient(to bottom, transparent, var(--brand-bg))" }}
+      />
 
       {/* Radial glow left (where headline is) */}
       <div
@@ -136,8 +141,8 @@ export default function HeroSection() {
               }}
             />
 
-            {/* Logo mockup image */}
-            <div className="relative w-full max-w-lg aspect-[4/3] rounded-2xl overflow-hidden">
+            {/* Logo mockup image — no hard border, blends into dark bg */}
+            <div className="relative w-full max-w-lg aspect-[4/3] overflow-hidden">
               <Image
                 src="/logo-mockup.jpg"
                 alt="Arapai Technologies International — office brand"
@@ -146,18 +151,26 @@ export default function HeroSection() {
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              {/* Dark overlay gradient for depth */}
+              {/* Left edge: fades image into the dark hero background */}
               <div
-                className="absolute inset-0 rounded-2xl"
+                className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(7,14,27,0.55) 0%, rgba(7,14,27,0.1) 60%, rgba(7,14,27,0.4) 100%)",
+                    "linear-gradient(to right, rgba(12,26,46,0.95) 0%, rgba(12,26,46,0.45) 30%, rgba(12,26,46,0.05) 65%, transparent 100%)",
                 }}
               />
-              {/* Gold border glow */}
+              {/* Bottom edge: dissolves into the section below */}
               <div
-                className="absolute inset-0 rounded-2xl"
-                style={{ boxShadow: "inset 0 0 0 1px rgba(201,168,76,0.25), 0 0 60px rgba(201,168,76,0.1)" }}
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "linear-gradient(to bottom, transparent 40%, rgba(12,26,46,0.55) 75%, rgba(12,26,46,0.9) 100%)",
+                }}
+              />
+              {/* Subtle gold shimmer */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ boxShadow: "inset 0 0 0 1px rgba(201,168,76,0.15)" }}
               />
             </div>
           </motion.div>

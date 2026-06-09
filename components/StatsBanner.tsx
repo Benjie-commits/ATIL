@@ -53,8 +53,6 @@ export default function StatsBanner() {
       className="py-14 md:py-16"
       style={{
         background: "var(--brand-bg)",
-        borderTop: "1px solid var(--brand-border)",
-        borderBottom: "1px solid var(--brand-border)",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

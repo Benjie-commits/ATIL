@@ -19,6 +19,22 @@ const iconMap: Record<string, React.ElementType> = {
   Brain, Eye, Heart, Leaf, LayoutGrid, Zap,
 };
 
+// Gradient crossfade between adjacent sections
+function Fade({ from, to, h = 72 }: { from: string; to: string; h?: number }) {
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        height: h,
+        background: `linear-gradient(to bottom, ${from}, ${to})`,
+        marginTop: -1,
+        marginBottom: -1,
+        pointerEvents: "none",
+      }}
+    />
+  );
+}
+
 const statusColors: Record<string, { text: string; bg: string }> = {
   Live:           { text: "#16a34a", bg: "rgba(22,163,74,0.08)" },
   Beta:           { text: "#2563eb", bg: "rgba(37,99,235,0.08)" },
@@ -31,7 +47,7 @@ function AboutSection() {
   return (
     <section
       className="py-20 md:py-24"
-      style={{ background: "var(--brand-light-bg)", borderBottom: "1px solid var(--brand-light-border)" }}
+      style={{ background: "var(--brand-light-bg)" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
@@ -190,7 +206,7 @@ function FlagshipSection() {
   return (
     <section
       className="py-20 md:py-24"
-      style={{ background: "var(--brand-light-bg)", borderTop: "1px solid var(--brand-light-border)" }}
+      style={{ background: "var(--brand-light-bg)" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex items-end justify-between">
@@ -297,7 +313,7 @@ function CTAStrip() {
   return (
     <section
       className="py-14 md:py-16"
-      style={{ background: "var(--brand-light-bg)", borderTop: "1px solid var(--brand-light-border)" }}
+      style={{ background: "var(--brand-light-bg)" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
@@ -327,15 +343,23 @@ function CTAStrip() {
 
 // ── Home page composition ────────────────────────────────────────────────────
 export default function HomePage() {
+  const dark = "#0C1A2E";
+  const light = "#FFFFFF";
+
   return (
     <>
       <HeroSection />
+      <Fade from={dark} to={light} h={80} />
       <PartnersBanner />
       <AboutSection />
+      <Fade from={light} to={dark} h={80} />
       <WhatWeBuildSection />
+      <Fade from={dark} to={light} h={80} />
       <FlagshipSection />
+      <Fade from={light} to={dark} h={80} />
       <StatsBanner />
       <AwardsSection compact={true} />
+      <Fade from={dark} to={light} h={80} />
       <CTAStrip />
     </>
   );
