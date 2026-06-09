@@ -21,8 +21,8 @@ const statusConfig: Record<
   },
   Research: {
     label: "Research",
-    color: "#c4b5fd",
-    bg: "rgba(196,181,253,0.1)",
+    color: "#0FC5BA",
+    bg: "rgba(15,197,186,0.1)",
     Icon: FlaskConical,
   },
   "Award-Winning": {
@@ -40,6 +40,7 @@ const categoryColors: Record<string, string> = {
   "AI/ML": "#f472b6",
   Education: "#fb923c",
   Software: "#38bdf8",
+  Research: "#0FC5BA",
 };
 
 interface ProjectCardProps {

@@ -6,12 +6,20 @@
   --brand-accent:       #C9A84C;
   --brand-accent-light: #E2C87A;
   --brand-accent-dark:  #9E7C2A;
-  --brand-bg:           #070E1B;
-  --brand-surface:      #0F1E35;
-  --brand-surface-hover:#152944;
-  --brand-border:       rgba(27,58,107,0.25);
-  --brand-text:         #F5F1E8;
-  --brand-text-muted:   #7B9BC4;
+  --brand-teal:         #0FC5BA;
+  --brand-teal-light:   #4DDDD7;
+  --brand-bg:           #0C1A2E;
+  --brand-surface:      #152540;
+  --brand-surface-hover:#1C2F52;
+  --brand-border:       rgba(30,70,130,0.32);
+  --brand-text:         #EEF2F7;
+  --brand-text-muted:   #8EAACC;
+  /* Light-section tokens */
+  --brand-light-bg:     #FFFFFF;
+  --brand-light-surface:#F5F8FC;
+  --brand-light-border: #DDE4EF;
+  --brand-text-dark:    #0B1929;
+  --brand-text-dark-muted: #5A7194;
 }
 
 /* ── Tailwind theme extension ──────────────────────────────────────────────── */
@@ -20,12 +28,19 @@
   --color-brand-accent:        var(--brand-accent);
   --color-brand-accent-light:  var(--brand-accent-light);
   --color-brand-accent-dark:   var(--brand-accent-dark);
+  --color-brand-teal:          var(--brand-teal);
+  --color-brand-teal-light:    var(--brand-teal-light);
   --color-brand-bg:            var(--brand-bg);
   --color-brand-surface:       var(--brand-surface);
   --color-brand-surface-hover: var(--brand-surface-hover);
   --color-brand-text:          var(--brand-text);
   --color-brand-text-muted:    var(--brand-text-muted);
-  --font-display: var(--font-orbitron);
+  --color-brand-light-bg:       var(--brand-light-bg);
+  --color-brand-light-surface:  var(--brand-light-surface);
+  --color-brand-light-border:   var(--brand-light-border);
+  --color-brand-text-dark:      var(--brand-text-dark);
+  --color-brand-text-dark-muted:var(--brand-text-dark-muted);
+  --font-display: var(--font-plus-jakarta);
   --font-body:    var(--font-dm-sans);
   --font-mono:    var(--font-space-mono);
 }
@@ -49,10 +64,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Hex grid background pattern ──────────────────────────────────────────── */
+/* ── Dot-grid background — no SVG, no mobile glitch ──────────────────────── */
 .hex-grid-bg {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66 L0 50 L0 16 L28 0 L56 16 L56 50 Z' fill='none' stroke='%231B3A6B' stroke-width='0.6' stroke-opacity='0.18'/%3E%3Cpath d='M28 166 L0 150 L0 116 L28 100 L56 116 L56 150 Z' fill='none' stroke='%231B3A6B' stroke-width='0.6' stroke-opacity='0.18'/%3E%3C/svg%3E");
-  background-size: 56px 100px;
+  background-image: radial-gradient(circle, rgba(30,70,130,0.22) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 /* ── Glow utilities ────────────────────────────────────────────────────────── */
@@ -62,6 +77,9 @@ body {
 .glow-accent-hover:hover {
   box-shadow: 0 0 32px 8px rgba(201,168,76,0.35);
 }
+.glow-teal {
+  box-shadow: 0 0 20px 4px rgba(15,197,186,0.2);
+}
 
 /* ── Card hover lift ───────────────────────────────────────────────────────── */
 .card-lift {
@@ -69,7 +87,11 @@ body {
 }
 .card-lift:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(201,168,76,0.2), 0 0 0 1px rgba(201,168,76,0.3);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.18), 0 0 0 1px rgba(201,168,76,0.25);
+}
+.card-lift-light:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(11,25,41,0.12), 0 0 0 1px rgba(201,168,76,0.2);
 }
 
 /* ── Scrollbar ─────────────────────────────────────────────────────────────── */

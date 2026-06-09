@@ -148,12 +148,12 @@ export default function Footer() {
           {/* Contact */}
           <FooterColumn title="Contact">
             <a
-              href={`mailto:${company.email}`}
+              href={`mailto:${company.companyEmail}`}
               className="text-sm flex items-start gap-2 transition-opacity hover:opacity-80"
               style={{ color: "var(--brand-text-muted)" }}
             >
               <Mail size={13} className="mt-0.5 flex-shrink-0" />
-              {company.email}
+              {company.companyEmail}
             </a>
             <div className="flex items-start gap-2 text-sm" style={{ color: "var(--brand-text-muted)" }}>
               <Phone size={13} className="mt-0.5 flex-shrink-0" />

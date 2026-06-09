@@ -7,7 +7,7 @@ import SectionHeader from "@/components/SectionHeader";
 const levelConfig = {
   International: { icon: Globe, color: "#C9A84C", bg: "rgba(201,168,76,0.12)" },
   National:      { icon: Medal, color: "#93c5fd", bg: "rgba(147,197,253,0.1)" },
-  Regional:      { icon: Star,  color: "#a3e635", bg: "rgba(163,230,53,0.1)" },
+  Regional:      { icon: Star,  color: "#0FC5BA", bg: "rgba(15,197,186,0.1)" },
 };
 
 interface AwardsSectionProps {

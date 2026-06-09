@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Orbitron, DM_Sans, Space_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, DM_Sans, Space_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { company } from "@/data/company";
 
-const orbitron = Orbitron({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-orbitron",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-plus-jakarta",
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -57,7 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${orbitron.variable} ${dmSans.variable} ${spaceMono.variable}`}
+      className={`${plusJakarta.variable} ${dmSans.variable} ${spaceMono.variable}`}
     >
       <body className="flex flex-col min-h-screen antialiased">
         <Navbar />

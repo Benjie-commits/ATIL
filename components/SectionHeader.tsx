@@ -7,6 +7,7 @@ interface SectionHeaderProps {
   subtitle?: string;
   align?: "left" | "center";
   className?: string;
+  onDark?: boolean;
 }
 
 export default function SectionHeader({
@@ -15,8 +16,11 @@ export default function SectionHeader({
   subtitle,
   align = "center",
   className = "",
+  onDark = true,
 }: SectionHeaderProps) {
   const alignClass = align === "center" ? "text-center items-center" : "text-left items-start";
+  const headingColor = onDark ? "var(--brand-text)" : "var(--brand-text-dark)";
+  const subtitleColor = onDark ? "var(--brand-text-muted)" : "var(--brand-text-dark-muted)";
 
   return (
     <motion.div
@@ -36,14 +40,14 @@ export default function SectionHeader({
       )}
       <h2
         className="font-display text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
-        style={{ color: "var(--brand-text)" }}
+        style={{ color: headingColor }}
       >
         {title}
       </h2>
       {subtitle && (
         <p
           className="text-base md:text-lg max-w-2xl leading-relaxed"
-          style={{ color: "var(--brand-text-muted)" }}
+          style={{ color: subtitleColor }}
         >
           {subtitle}
         </p>

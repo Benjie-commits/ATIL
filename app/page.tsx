@@ -15,23 +15,24 @@ import { company } from "@/data/company";
 import { services } from "@/data/services";
 import { products } from "@/data/products";
 
-// Icon map for services
 const iconMap: Record<string, React.ElementType> = {
   Brain, Eye, Heart, Leaf, LayoutGrid, Zap,
 };
 
-// Status pill colours
 const statusColors: Record<string, { text: string; bg: string }> = {
-  Live:           { text: "#4ade80", bg: "rgba(74,222,128,0.1)" },
-  Beta:           { text: "#93c5fd", bg: "rgba(147,197,253,0.1)" },
-  Research:       { text: "#c4b5fd", bg: "rgba(196,181,253,0.1)" },
-  "Award-Winning":{ text: "#C9A84C", bg: "rgba(201,168,76,0.12)" },
+  Live:           { text: "#16a34a", bg: "rgba(22,163,74,0.08)" },
+  Beta:           { text: "#2563eb", bg: "rgba(37,99,235,0.08)" },
+  Research:       { text: "#0FC5BA", bg: "rgba(15,197,186,0.08)" },
+  "Award-Winning":{ text: "#C9A84C", bg: "rgba(201,168,76,0.1)" },
 };
 
 // ── Section: About preview ───────────────────────────────────────────────────
 function AboutSection() {
   return (
-    <section className="py-20 md:py-24" style={{ background: "var(--brand-bg)" }}>
+    <section
+      className="py-20 md:py-24"
+      style={{ background: "var(--brand-light-bg)", borderBottom: "1px solid var(--brand-light-border)" }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
           {/* Left */}
@@ -44,29 +45,28 @@ function AboutSection() {
           >
             <h2
               className="font-display text-3xl md:text-4xl font-bold leading-snug"
-              style={{ color: "var(--brand-text)" }}
+              style={{ color: "var(--brand-text-dark)" }}
             >
               About Arapai Technologies International
             </h2>
-            <p className="text-base leading-relaxed" style={{ color: "var(--brand-text-muted)" }}>
+            <p className="text-base leading-relaxed" style={{ color: "var(--brand-text-dark-muted)" }}>
               {company.aboutSummary}
             </p>
             <ul className="flex flex-col gap-3 mt-1">
               {company.capabilities.map((cap) => (
                 <li key={cap} className="flex items-center gap-3">
                   <CheckCircle2 size={16} style={{ color: "var(--brand-accent)", flexShrink: 0 }} />
-                  <span className="text-sm" style={{ color: "var(--brand-text)" }}>{cap}</span>
+                  <span className="text-sm" style={{ color: "var(--brand-text-dark)" }}>{cap}</span>
                 </li>
               ))}
             </ul>
             <div className="mt-2">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-semibold transition-all duration-200"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200"
                 style={{
-                  border: "1px solid var(--brand-accent)",
-                  color: "var(--brand-accent)",
-                  background: "transparent",
+                  background: "var(--brand-accent)",
+                  color: "#0B1929",
                 }}
               >
                 Learn Our Story <ArrowRight size={15} />
@@ -74,9 +74,9 @@ function AboutSection() {
             </div>
           </motion.div>
 
-          {/* Right: Mission + Vision dark card with globe visual */}
+          {/* Right: Mission + Vision dark card — pops beautifully on white */}
           <motion.div
-            className="rounded-2xl overflow-hidden"
+            className="rounded-2xl overflow-hidden shadow-xl"
             style={{
               background: "var(--brand-surface)",
               border: "1px solid var(--brand-border)",
@@ -86,7 +86,6 @@ function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
           >
-            {/* Brand image top */}
             <div className="relative w-full aspect-[16/7] overflow-hidden">
               <Image
                 src="/brand-identity.jpg"
@@ -100,7 +99,6 @@ function AboutSection() {
                 style={{ background: "linear-gradient(to bottom, transparent 30%, var(--brand-surface) 100%)" }}
               />
             </div>
-            {/* Content */}
             <div className="p-6 flex flex-col gap-5">
               <div className="flex flex-col gap-2">
                 <p className="font-mono text-xs tracking-widest uppercase" style={{ color: "var(--brand-accent)" }}>
@@ -110,10 +108,7 @@ function AboutSection() {
                   {company.mission}
                 </p>
               </div>
-              <div
-                className="h-px w-full"
-                style={{ background: "var(--brand-border)" }}
-              />
+              <div className="h-px w-full" style={{ background: "var(--brand-border)" }} />
               <div className="flex flex-col gap-2">
                 <p className="font-mono text-xs tracking-widest uppercase" style={{ color: "var(--brand-accent)" }}>
                   Our Vision
@@ -135,16 +130,14 @@ function WhatWeBuildSection() {
   return (
     <section
       className="py-20 md:py-24"
-      style={{
-        background: "var(--brand-surface)",
-        borderTop: "1px solid var(--brand-border)",
-      }}
+      style={{ background: "var(--brand-bg)" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
         <SectionHeader
           label="Solutions"
           title="What We Build"
           subtitle="Intelligent solutions for Africa's most critical challenges."
+          onDark={true}
         />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
           {services.map((s, i) => {
@@ -154,7 +147,7 @@ function WhatWeBuildSection() {
                 key={s.id}
                 className="card-lift flex flex-col items-center gap-3 p-5 rounded-xl text-center cursor-default"
                 style={{
-                  background: "var(--brand-bg)",
+                  background: "var(--brand-surface)",
                   border: "1px solid var(--brand-border)",
                 }}
                 initial={{ opacity: 0, y: 16 }}
@@ -197,7 +190,7 @@ function FlagshipSection() {
   return (
     <section
       className="py-20 md:py-24"
-      style={{ background: "var(--brand-bg)" }}
+      style={{ background: "var(--brand-light-bg)", borderTop: "1px solid var(--brand-light-border)" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <div className="flex items-end justify-between">
@@ -206,6 +199,7 @@ function FlagshipSection() {
             title="Flagship Solutions"
             subtitle="Products and platforms engineered for impact."
             align="left"
+            onDark={false}
           />
           <Link
             href="/portfolio"
@@ -222,10 +216,11 @@ function FlagshipSection() {
             return (
               <motion.div
                 key={product.id}
-                className="card-lift group flex flex-col rounded-xl overflow-hidden"
+                className="card-lift card-lift-light group flex flex-col rounded-xl overflow-hidden"
                 style={{
-                  background: "var(--brand-surface)",
-                  border: "1px solid var(--brand-border)",
+                  background: "#FFFFFF",
+                  border: "1px solid var(--brand-light-border)",
+                  boxShadow: "0 1px 6px rgba(11,25,41,0.06)",
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -240,29 +235,25 @@ function FlagshipSection() {
                   <div className="flex flex-col items-center gap-2 px-4">
                     <span
                       className="font-display text-xs font-bold tracking-widest uppercase text-center"
-                      style={{ color: "rgba(201,168,76,0.6)" }}
+                      style={{ color: "rgba(201,168,76,0.7)" }}
                     >
                       {product.category}
                     </span>
                     <span
                       className="font-display text-sm font-bold text-center leading-tight"
-                      style={{ color: "var(--brand-text)" }}
+                      style={{ color: "rgba(255,255,255,0.9)" }}
                     >
                       {product.name}
                     </span>
                   </div>
-                  {/* Gold corner accent */}
                   <div
                     className="absolute top-0 right-0 w-10 h-10"
-                    style={{
-                      background: "linear-gradient(225deg, rgba(201,168,76,0.3) 0%, transparent 60%)",
-                    }}
+                    style={{ background: "linear-gradient(225deg, rgba(201,168,76,0.35) 0%, transparent 60%)" }}
                   />
                 </div>
 
                 {/* Content */}
                 <div className="flex flex-col gap-3 p-4 flex-1">
-                  {/* Status + category */}
                   <div className="flex items-center gap-2">
                     <span
                       className="font-mono text-[10px] tracking-wider px-2 py-0.5 rounded-full"
@@ -271,7 +262,7 @@ function FlagshipSection() {
                       {product.status}
                     </span>
                   </div>
-                  <p className="text-xs leading-relaxed flex-1" style={{ color: "var(--brand-text-muted)" }}>
+                  <p className="text-xs leading-relaxed flex-1" style={{ color: "var(--brand-text-dark-muted)" }}>
                     {product.description}
                   </p>
                   <Link
@@ -306,28 +297,25 @@ function CTAStrip() {
   return (
     <section
       className="py-14 md:py-16"
-      style={{
-        background: "var(--brand-surface)",
-        borderTop: "1px solid var(--brand-border)",
-      }}
+      style={{ background: "var(--brand-light-bg)", borderTop: "1px solid var(--brand-light-border)" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="flex flex-col gap-2">
             <h2
               className="font-display text-2xl md:text-3xl font-bold"
-              style={{ color: "var(--brand-text)" }}
+              style={{ color: "var(--brand-text-dark)" }}
             >
               Let&apos;s build the future together.
             </h2>
-            <p className="text-sm" style={{ color: "var(--brand-text-muted)" }}>
+            <p className="text-sm" style={{ color: "var(--brand-text-dark-muted)" }}>
               Partner with us to solve real-world challenges with AI and technology.
             </p>
           </div>
           <Link
             href="/contact"
-            className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-md font-semibold text-sm transition-all duration-200 glow-accent-hover"
-            style={{ background: "var(--brand-accent)", color: "var(--brand-bg)" }}
+            className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 glow-accent-hover"
+            style={{ background: "var(--brand-accent)", color: "#0B1929" }}
           >
             Get In Touch <ArrowRight size={16} />
           </Link>
@@ -347,7 +335,6 @@ export default function HomePage() {
       <WhatWeBuildSection />
       <FlagshipSection />
       <StatsBanner />
-      {/* Compact awards strip — highlight-only, full list on About page */}
       <AwardsSection compact={true} />
       <CTAStrip />
     </>

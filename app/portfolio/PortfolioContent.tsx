@@ -25,7 +25,7 @@ export default function PortfolioContent() {
           <SectionHeader
             label="Our Work"
             title="Project Portfolio"
-            subtitle="Eight real deployments spanning energy, agriculture, finance, education, AI research, and enterprise software."
+            subtitle="Ten projects spanning energy, agriculture, finance, education, AI research, and enterprise software — plus two ongoing research papers."
           />
           <ProjectFilter active={activeFilter} onChange={setActiveFilter} />
         </div>
@@ -71,8 +71,8 @@ export default function PortfolioContent() {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { n: "8", label: "Projects" },
-              { n: "6", label: "Categories" },
+              { n: "10", label: "Projects" },
+              { n: "7", label: "Categories" },
               { n: "1st", label: "Hackathon Place" },
               { n: "1.6M+", label: "Speakers Reached (Ateso NMT)" },
             ].map(({ n, label }) => (

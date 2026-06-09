@@ -52,7 +52,7 @@ export default function StatsBanner() {
     <section
       className="py-14 md:py-16"
       style={{
-        background: "var(--brand-surface)",
+        background: "var(--brand-bg)",
         borderTop: "1px solid var(--brand-border)",
         borderBottom: "1px solid var(--brand-border)",
       }}

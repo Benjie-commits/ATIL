@@ -16,8 +16,8 @@ export const company = {
   poBox: "P.O Box 210383, Kampala, Uganda",
   officeAddress: "Wakiso, Uganda",
 
-  heroHeadline: ["Applied AI.", "Intelligent Systems.", "Real Impact."],
-  tagline: "Applied AI. Intelligent Systems. Real Impact.",
+  heroHeadline: ["Applied AI.", "Intelligent Systems."],
+  tagline: "Applied AI. Intelligent Systems.",
   shortTagline: "Engineering the Future From Africa",
 
   description:

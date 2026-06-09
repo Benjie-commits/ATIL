@@ -7,17 +7,6 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { company } from "@/data/company";
 import { services } from "@/data/services";
 
-const topLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  // Solutions has a dropdown
-  { href: "/products", label: "Products" },
-  { href: "/research", label: "Research" },
-  { href: "/impact", label: "Impact" },
-  { href: "/careers", label: "Careers" },
-  { href: "/contact", label: "Contact" },
-];
-
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -33,7 +22,6 @@ export default function Navbar() {
 
   useEffect(() => { setDrawerOpen(false); setSolutionsOpen(false); }, [pathname]);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -46,18 +34,18 @@ export default function Navbar() {
 
   const isActive = (href: string) => pathname === href;
   const linkStyle = (href: string): React.CSSProperties => ({
-    color: isActive(href) ? "var(--brand-accent)" : "var(--brand-text-muted)",
+    color: isActive(href) ? "var(--brand-accent)" : "#334155",
     fontWeight: isActive(href) ? 600 : 400,
   });
 
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-200"
         style={{
-          background: scrolled ? "var(--brand-bg)" : "rgba(7,14,27,0.75)",
-          backdropFilter: "blur(14px)",
-          borderBottom: "1px solid var(--brand-border)",
+          background: "#FFFFFF",
+          borderBottom: "1px solid #E2E8F0",
+          boxShadow: scrolled ? "0 1px 12px rgba(11,25,41,0.07)" : "none",
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,7 +57,7 @@ export default function Navbar() {
                 <Image src={company.logoSvg} alt="Arapai Technologies logo" fill className="object-contain" />
               </div>
               <div className="flex flex-col leading-none">
-                <span className="font-display text-[13px] font-bold tracking-wide" style={{ color: "var(--brand-text)" }}>
+                <span className="font-display text-[13px] font-bold tracking-wide" style={{ color: "var(--brand-text-dark)" }}>
                   ARAPAI
                 </span>
                 <span className="font-mono text-[8px] tracking-[0.15em] uppercase" style={{ color: "var(--brand-accent)" }}>
@@ -88,7 +76,7 @@ export default function Navbar() {
                 <button
                   onClick={() => setSolutionsOpen((o) => !o)}
                   className="flex items-center gap-1 text-[13px] transition-colors"
-                  style={{ color: solutionsOpen ? "var(--brand-accent)" : "var(--brand-text-muted)" }}
+                  style={{ color: solutionsOpen ? "var(--brand-accent)" : "#334155" }}
                 >
                   Solutions
                   <ChevronDown
@@ -100,10 +88,10 @@ export default function Navbar() {
 
                 {solutionsOpen && (
                   <div
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-xl overflow-hidden shadow-2xl"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-xl overflow-hidden shadow-xl"
                     style={{
-                      background: "var(--brand-surface)",
-                      border: "1px solid var(--brand-border)",
+                      background: "#FFFFFF",
+                      border: "1px solid #E2E8F0",
                     }}
                   >
                     <div className="p-2">
@@ -111,8 +99,10 @@ export default function Navbar() {
                         <Link
                           key={s.id}
                           href="/services"
-                          className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-[13px] transition-colors hover:bg-brand-surface-hover"
-                          style={{ color: "var(--brand-text-muted)" }}
+                          className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-[13px] transition-colors"
+                          style={{ color: "#475569" }}
+                          onMouseEnter={(e) => (e.currentTarget.style.background = "#F8FAFC")}
+                          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                         >
                           <span
                             className="w-1.5 h-1.5 rounded-full flex-shrink-0"
@@ -124,7 +114,7 @@ export default function Navbar() {
                     </div>
                     <div
                       className="px-4 py-2.5 flex items-center justify-between"
-                      style={{ borderTop: "1px solid var(--brand-border)" }}
+                      style={{ borderTop: "1px solid #E2E8F0" }}
                     >
                       <Link
                         href="/services"
@@ -139,9 +129,9 @@ export default function Navbar() {
               </div>
 
               <Link href="/portfolio" className="text-[13px] transition-colors" style={linkStyle("/portfolio")}>Products</Link>
-              <Link href="/about" className="text-[13px] transition-colors" style={{ color: "var(--brand-text-muted)" }}>Research</Link>
-              <Link href="/about" className="text-[13px] transition-colors" style={{ color: "var(--brand-text-muted)" }}>Impact</Link>
-              <Link href="/team" className="text-[13px] transition-colors" style={{ color: "var(--brand-text-muted)" }}>Careers</Link>
+              <Link href="/about" className="text-[13px] transition-colors" style={{ color: "#334155" }}>Research</Link>
+              <Link href="/about" className="text-[13px] transition-colors" style={{ color: "#334155" }}>Impact</Link>
+              <Link href="/team" className="text-[13px] transition-colors" style={{ color: "#334155" }}>Careers</Link>
               <Link href="/contact" className="text-[13px] transition-colors" style={linkStyle("/contact")}>Contact</Link>
             </nav>
 
@@ -149,8 +139,8 @@ export default function Navbar() {
             <div className="hidden lg:block">
               <Link
                 href="/contact"
-                className="px-4 py-2 rounded-md text-[13px] font-semibold transition-all duration-200 glow-accent-hover"
-                style={{ background: "var(--brand-accent)", color: "var(--brand-bg)" }}
+                className="px-5 py-2 rounded-lg text-[13px] font-semibold transition-all duration-200 glow-accent-hover"
+                style={{ background: "var(--brand-accent)", color: "#0B1929" }}
               >
                 Get In Touch
               </Link>
@@ -160,7 +150,7 @@ export default function Navbar() {
             <button
               onClick={() => setDrawerOpen((o) => !o)}
               className="lg:hidden p-2 rounded-md"
-              style={{ color: "var(--brand-text)" }}
+              style={{ color: "#334155" }}
               aria-label="Toggle menu"
             >
               {drawerOpen ? <X size={20} /> : <Menu size={20} />}
@@ -173,7 +163,7 @@ export default function Navbar() {
       <div className={`fixed inset-0 z-40 lg:hidden transition-all duration-300 ${drawerOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
         <div
           className="absolute inset-0"
-          style={{ background: "rgba(7,14,27,0.88)" }}
+          style={{ background: "rgba(11,25,41,0.75)" }}
           onClick={() => setDrawerOpen(false)}
         />
         <div
@@ -207,8 +197,8 @@ export default function Navbar() {
           <div className="mt-6 pt-5" style={{ borderTop: "1px solid var(--brand-border)" }}>
             <Link
               href="/contact"
-              className="block text-center py-3 rounded-md font-semibold text-sm"
-              style={{ background: "var(--brand-accent)", color: "var(--brand-bg)" }}
+              className="block text-center py-3 rounded-lg font-semibold text-sm"
+              style={{ background: "var(--brand-accent)", color: "#0B1929" }}
             >
               Get In Touch
             </Link>
