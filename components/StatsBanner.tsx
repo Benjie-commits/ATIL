@@ -1,15 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { FolderOpen, Users, Building2, BookOpen, Globe } from "lucide-react";
 
-// ── Configurable impact stats ─────────────────────────────────────────────────
 const STATS = [
-  { value: 25, suffix: "+", label: "Projects Completed", icon: FolderOpen },
-  { value: 1,  suffix: "M+", label: "People Impacted",   icon: Users },
-  { value: 50, suffix: "+", label: "Institutions Served", icon: Building2 },
-  { value: 20, suffix: "+", label: "Research Publications", icon: BookOpen },
-  { value: 15, suffix: "+", label: "African Countries",   icon: Globe },
+  { value: 25, suffix: "+",  label: "Projects Completed"    },
+  { value: 1,  suffix: "M+", label: "People Impacted"       },
+  { value: 50, suffix: "+",  label: "Institutions Served"   },
+  { value: 20, suffix: "+",  label: "Research Publications" },
+  { value: 15, suffix: "+",  label: "African Countries"     },
 ] as const;
 
 function CountUp({ target, suffix }: { target: number; suffix: string }) {
@@ -23,18 +21,13 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
         if (entry.isIntersecting && !started.current) {
           started.current = true;
           let cur = 0;
-          const duration = 1200;
           const steps = Math.min(target, 60);
-          const interval = duration / steps;
+          const interval = 1400 / steps;
           const increment = target / steps;
           const timer = setInterval(() => {
             cur += increment;
-            if (cur >= target) {
-              setCount(target);
-              clearInterval(timer);
-            } else {
-              setCount(Math.floor(cur));
-            }
+            if (cur >= target) { setCount(target); clearInterval(timer); }
+            else { setCount(Math.floor(cur)); }
           }, interval);
         }
       },
@@ -50,55 +43,60 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
 export default function StatsBanner() {
   return (
     <section
-      className="py-14 md:py-16"
-      style={{
-        background: "var(--brand-bg)",
-      }}
+      className="py-16 md:py-20"
+      style={{ background: "var(--canvas-warm)" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.p
-          className="text-center font-mono text-xs tracking-[0.25em] uppercase mb-10"
-          style={{ color: "var(--brand-accent)" }}
+          className="text-center font-mono text-[10px] tracking-[0.28em] uppercase mb-12"
+          style={{ color: "var(--gold)" }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
         >
-          Our Impact
+          — Our Impact
         </motion.p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-4">
-          {STATS.map((stat, i) => {
-            const Icon = stat.icon;
-            return (
-              <motion.div
-                key={stat.label}
-                className="flex flex-col items-center gap-3 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-0">
+          {STATS.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              className="flex flex-col items-center gap-2 text-center px-4 py-4"
+              style={{
+                borderRight: i < STATS.length - 1 ? "1px solid var(--border-soft)" : "none",
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: i * 0.09 }}
+            >
+              {/* Giant parchment numeral */}
+              <span
+                className="font-display font-bold tabular-nums leading-none"
+                style={{
+                  color: "var(--parchment)",
+                  fontSize: "clamp(3rem, 5.5vw, 5rem)",
+                  textShadow: "0 2px 24px rgba(244,237,220,0.12)",
+                }}
               >
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center"
-                  style={{ background: "rgba(201,168,76,0.1)", border: "1px solid rgba(201,168,76,0.2)" }}
-                >
-                  <Icon size={18} style={{ color: "var(--brand-accent)" }} />
-                </div>
+                <CountUp target={stat.value} suffix={stat.suffix} />
+              </span>
+
+              {/* Label with gold underline */}
+              <div className="relative pt-3">
                 <span
-                  className="font-display text-3xl md:text-4xl font-bold tabular-nums"
-                  style={{ color: "var(--brand-accent)" }}
-                >
-                  <CountUp target={stat.value} suffix={stat.suffix} />
-                </span>
-                <span
-                  className="text-xs font-medium leading-snug max-w-[110px]"
-                  style={{ color: "var(--brand-text-muted)" }}
+                  className="font-mono text-[9.5px] tracking-[0.2em] uppercase"
+                  style={{ color: "var(--text-muted)" }}
                 >
                   {stat.label}
                 </span>
-              </motion.div>
-            );
-          })}
+                <div
+                  className="absolute left-0 bottom-0 w-full h-px"
+                  style={{ background: "linear-gradient(to right, transparent, var(--gold), transparent)" }}
+                />
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

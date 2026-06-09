@@ -1,28 +1,31 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, DM_Sans, Space_Mono } from "next/font/google";
+import { Fraunces, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { company } from "@/data/company";
 
-const plusJakarta = Plus_Jakarta_Sans({
+// Display serif — headlines, hero, section titles
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-plus-jakarta",
-  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-fraunces",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+// Body / UI — clean, modern, very legible on dark
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter-tight",
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
-const spaceMono = Space_Mono({
+// Mono — eyebrows, labels, reg numbers, metadata
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-space-mono",
-  weight: ["400", "700"],
+  variable: "--font-jetbrains-mono",
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -49,15 +52,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${plusJakarta.variable} ${dmSans.variable} ${spaceMono.variable}`}
+      className={`${fraunces.variable} ${interTight.variable} ${jetbrainsMono.variable}`}
     >
       <body className="flex flex-col min-h-screen antialiased">
         <Navbar />

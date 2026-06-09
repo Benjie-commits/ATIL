@@ -6,33 +6,18 @@ import { company } from "@/data/company";
 import { services } from "@/data/services";
 import { products } from "@/data/products";
 
-const companyLinks = [
-  { href: "/about", label: "About Us" },
-  { href: "/about", label: "Our Mission" },
-  { href: "/team", label: "Our Team" },
-  { href: "/team", label: "Careers" },
-  { href: "/contact", label: "News" },
-];
-
 const researchLinks = [
-  { href: "/about", label: "Publications" },
-  { href: "/portfolio", label: "Projects" },
-  { href: "/contact", label: "Collaborations" },
-  { href: "/about", label: "Conferences" },
-  { href: "/about", label: "Resources" },
+  { href: "/about",     label: "Publications"    },
+  { href: "/portfolio", label: "Projects"        },
+  { href: "/contact",   label: "Collaborations"  },
+  { href: "/about",     label: "Conferences"     },
 ];
 
-function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
+function FooterHeading({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col gap-3">
-      <h4
-        className="font-mono text-xs tracking-[0.2em] uppercase font-bold"
-        style={{ color: "var(--brand-text)" }}
-      >
-        {title}
-      </h4>
-      <div className="flex flex-col gap-2">{children}</div>
-    </div>
+    <h4 className="font-mono text-[9.5px] tracking-[0.25em] uppercase mb-4" style={{ color: "var(--gold)" }}>
+      — {children}
+    </h4>
   );
 }
 
@@ -40,8 +25,8 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
   return (
     <Link
       href={href}
-      className="text-sm transition-opacity hover:opacity-80"
-      style={{ color: "var(--brand-text-muted)" }}
+      className="block text-sm leading-relaxed transition-colors duration-150 hover:text-[var(--text)]"
+      style={{ color: "var(--text-muted)" }}
     >
       {children}
     </Link>
@@ -53,147 +38,151 @@ export default function Footer() {
 
   return (
     <footer
-      className="relative mt-auto"
-      style={{ background: "var(--brand-surface)" }}
+      className="relative parchment-grain"
+      style={{
+        background: "var(--ink)",
+        borderTop: "2px solid var(--gold)",
+      }}
     >
-      {/* Fade: white CTA above → dark footer */}
-      <div
-        aria-hidden="true"
-        style={{
-          height: 72,
-          background: "linear-gradient(to bottom, #FFFFFF, var(--brand-surface))",
-          marginTop: -1,
-        }}
-      />
-      {/* Gold accent line */}
-      <div className="h-[2px]" style={{ background: "var(--brand-accent)" }} />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-18">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 lg:gap-8">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6">
-
-          {/* Brand — spans 1 column on lg */}
-          <div className="col-span-2 md:col-span-3 lg:col-span-1 flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-2 w-fit">
-              <div className="relative w-9 h-9">
+          {/* ── Brand column ─────────────────────────────── */}
+          <div className="flex flex-col gap-5">
+            <Link href="/" className="flex items-center gap-3 w-fit group">
+              <div className="relative w-10 h-10 flex-shrink-0">
                 <Image src={company.logoSvg} alt="Arapai Technologies logo" fill className="object-contain" />
               </div>
               <div className="flex flex-col leading-none">
-                <span className="font-display text-[12px] font-bold tracking-wide" style={{ color: "var(--brand-text)" }}>
+                <span className="font-display text-[14px] font-bold tracking-wide" style={{ color: "var(--text)" }}>
                   ARAPAI
                 </span>
-                <span className="font-mono text-[8px] tracking-[0.12em] uppercase" style={{ color: "var(--brand-accent)" }}>
+                <span className="font-mono text-[7.5px] tracking-[0.18em] uppercase" style={{ color: "var(--gold)" }}>
                   Technologies International
                 </span>
               </div>
             </Link>
-            <p className="text-xs leading-relaxed" style={{ color: "var(--brand-text-muted)" }}>
-              {company.tagline}
+
+            {/* Serif italic tagline */}
+            <p className="font-display italic text-lg leading-snug" style={{ color: "rgba(241,236,220,0.65)" }}>
+              Applied AI.<br />
+              <span style={{ color: "var(--gold)" }}>Intelligent Systems.</span>
+            </p>
+
+            <p className="text-xs leading-relaxed max-w-[28ch]" style={{ color: "var(--text-muted)" }}>
+              Engineering intelligent solutions for Africa's most critical challenges.
             </p>
 
             {/* Social icons */}
-            <div className="flex items-center gap-2.5 mt-1">
-              <a
-                href={company.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-md transition-opacity hover:opacity-70"
-                style={{ background: "var(--brand-border)", color: "var(--brand-text-muted)" }}
-                aria-label="LinkedIn"
-              >
-                <Globe size={14} />
-              </a>
-              <a
-                href={company.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-md transition-opacity hover:opacity-70"
-                style={{ background: "var(--brand-border)", color: "var(--brand-text-muted)" }}
-                aria-label="Twitter / X"
-              >
-                {/* X / Twitter icon as text since lucide doesn't have it */}
-                <span className="text-[12px] font-bold leading-none">𝕏</span>
-              </a>
-              <a
-                href={company.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-md transition-opacity hover:opacity-70"
-                style={{ background: "var(--brand-border)", color: "var(--brand-text-muted)" }}
-                aria-label="GitHub"
-              >
-                <GitBranch size={14} />
-              </a>
+            <div className="flex items-center gap-2 mt-1">
+              {[
+                { href: company.linkedin, label: "LinkedIn",   icon: <Globe size={13} /> },
+                { href: company.twitter,  label: "Twitter / X", icon: <span className="text-[11px] font-bold leading-none">𝕏</span> },
+                { href: company.github,   label: "GitHub",      icon: <GitBranch size={13} /> },
+              ].map(({ href, label, icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="p-2 rounded-md transition-all duration-150"
+                  style={{
+                    background: "rgba(201,168,76,0.08)",
+                    border: "1px solid var(--border)",
+                    color: "var(--text-muted)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(201,168,76,0.35)";
+                    e.currentTarget.style.color = "var(--text)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "var(--border)";
+                    e.currentTarget.style.color = "var(--text-muted)";
+                  }}
+                >
+                  {icon}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Company */}
-          <FooterColumn title="Company">
-            {companyLinks.map((l) => (
-              <FooterLink key={l.label} href={l.href}>{l.label}</FooterLink>
-            ))}
-          </FooterColumn>
-
-          {/* Solutions */}
-          <FooterColumn title="Solutions">
-            {services.map((s) => (
-              <FooterLink key={s.id} href="/services">{s.shortTitle}</FooterLink>
-            ))}
-          </FooterColumn>
-
-          {/* Products */}
-          <FooterColumn title="Products">
-            {products.map((p) => (
-              <FooterLink key={p.id} href="/portfolio">{p.name}</FooterLink>
-            ))}
-          </FooterColumn>
-
-          {/* Research */}
-          <FooterColumn title="Research">
-            {researchLinks.map((l) => (
-              <FooterLink key={l.label} href={l.href}>{l.label}</FooterLink>
-            ))}
-          </FooterColumn>
-
-          {/* Contact */}
-          <FooterColumn title="Contact">
-            <a
-              href={`mailto:${company.companyEmail}`}
-              className="text-sm flex items-start gap-2 transition-opacity hover:opacity-80"
-              style={{ color: "var(--brand-text-muted)" }}
-            >
-              <Mail size={13} className="mt-0.5 flex-shrink-0" />
-              {company.companyEmail}
-            </a>
-            <div className="flex items-start gap-2 text-sm" style={{ color: "var(--brand-text-muted)" }}>
-              <Phone size={13} className="mt-0.5 flex-shrink-0" />
-              {company.phone}
+          {/* ── Solutions column ──────────────────────────── */}
+          <div>
+            <FooterHeading>Solutions</FooterHeading>
+            <div className="flex flex-col gap-2.5">
+              {services.map((s) => (
+                <FooterLink key={s.id} href="/services">{s.shortTitle}</FooterLink>
+              ))}
             </div>
-            <div className="flex items-start gap-2 text-sm" style={{ color: "var(--brand-text-muted)" }}>
-              <MapPin size={13} className="mt-0.5 flex-shrink-0" />
-              {company.location}
+          </div>
+
+          {/* ── Products + Research ───────────────────────── */}
+          <div className="flex flex-col gap-8">
+            <div>
+              <FooterHeading>Products</FooterHeading>
+              <div className="flex flex-col gap-2.5">
+                {products.map((p) => (
+                  <FooterLink key={p.id} href="/portfolio">{p.name}</FooterLink>
+                ))}
+              </div>
             </div>
-            <div
-              className="mt-3 pt-3"
-              style={{ borderTop: "1px solid var(--brand-border)" }}
-            >
-              <Link
-                href="/contact"
-                className="text-sm font-semibold"
-                style={{ color: "var(--brand-accent)" }}
+            <div>
+              <FooterHeading>Research</FooterHeading>
+              <div className="flex flex-col gap-2.5">
+                {researchLinks.map((l) => (
+                  <FooterLink key={l.label} href={l.href}>{l.label}</FooterLink>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ── Contact column ────────────────────────────── */}
+          <div>
+            <FooterHeading>Contact</FooterHeading>
+            <div className="flex flex-col gap-3">
+              <a
+                href={`mailto:${company.companyEmail}`}
+                className="flex items-start gap-2.5 text-sm transition-colors hover:text-[var(--text)]"
+                style={{ color: "var(--text-muted)" }}
               >
-                Work With Us →
-              </Link>
+                <Mail size={13} className="mt-0.5 flex-shrink-0" style={{ color: "var(--gold)" }} />
+                {company.companyEmail}
+              </a>
+              <div className="flex items-start gap-2.5 text-sm" style={{ color: "var(--text-muted)" }}>
+                <Phone size={13} className="mt-0.5 flex-shrink-0" style={{ color: "var(--gold)" }} />
+                {company.phone}
+              </div>
+              <div className="flex items-start gap-2.5 text-sm" style={{ color: "var(--text-muted)" }}>
+                <MapPin size={13} className="mt-0.5 flex-shrink-0" style={{ color: "var(--gold)" }} />
+                {company.location}
+              </div>
+              <div className="pt-3 mt-1" style={{ borderTop: "1px solid var(--border-soft)" }}>
+                <Link
+                  href="/contact"
+                  className="btn-parchment inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs"
+                >
+                  Work With Us →
+                </Link>
+              </div>
             </div>
-          </FooterColumn>
+          </div>
         </div>
 
-        {/* Bottom bar */}
+        {/* ── Bottom bar ───────────────────────────────────── */}
         <div
-          className="mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"
-          style={{ borderTop: "1px solid var(--brand-border)", color: "var(--brand-text-muted)" }}
+          className="mt-12 pt-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
+          style={{ borderTop: "1px solid var(--border-soft)" }}
         >
-          <p>© {year} {company.legalName}. All rights reserved.</p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col gap-1.5">
+            <p className="text-xs" style={{ color: "rgba(159,176,204,0.55)" }}>
+              © {year} {company.legalName}. All rights reserved.
+            </p>
+            <p className="font-mono text-[9px] tracking-wider" style={{ color: "rgba(159,176,204,0.35)" }}>
+              URSB Reg. No. {company.registrationNo} · {company.act}
+            </p>
+          </div>
+          <div className="flex items-center gap-5 text-xs" style={{ color: "rgba(159,176,204,0.45)" }}>
             <Link href="/about" className="hover:opacity-80 transition-opacity">Privacy Policy</Link>
             <Link href="/about" className="hover:opacity-80 transition-opacity">Terms of Service</Link>
           </div>

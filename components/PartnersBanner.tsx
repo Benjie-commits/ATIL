@@ -1,57 +1,62 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 
 const partners = [
-  { name: "African Union",                 abbr: "African Union",         bold: true },
-  { name: "Bill & Melinda Gates Foundation", abbr: "Bill & Melinda\nGates Foundation", bold: false },
-  { name: "UNDP",                          abbr: "UNDP",                  bold: true },
-  { name: "MIT",                           abbr: "MIT",                   bold: true },
-  { name: "University of Washington",      abbr: "University of\nWashington", bold: false },
+  { name: "African Union",                   sub: "Strategic Partner"       },
+  { name: "Bill & Melinda Gates Foundation", sub: "Funding Partner"         },
+  { name: "UNDP",                            sub: "Development Partner"     },
+  { name: "MIT",                             sub: "Research Collaborator"   },
+  { name: "University of Washington",        sub: "Academic Partner"        },
 ] as const;
 
 export default function PartnersBanner() {
   return (
     <section
-      className="py-5 md:py-6"
+      className="py-6 md:py-7"
       style={{
-        background: "var(--brand-light-bg)",
-        borderBottom: "1px solid var(--brand-light-border)",
+        background: "var(--canvas)",
+        borderBottom: "1px solid var(--border-soft)",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-center gap-5 md:gap-8">
+        <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-0">
           <p
-            className="font-mono text-[10px] tracking-[0.18em] uppercase whitespace-nowrap flex-shrink-0"
-            style={{ color: "var(--brand-text-dark-muted)" }}
+            className="font-mono text-[9px] tracking-[0.22em] uppercase whitespace-nowrap flex-shrink-0 sm:pr-7"
+            style={{ color: "rgba(159,176,204,0.5)" }}
           >
-            Trusted by Institutions and Partners
+            — Trusted by
           </p>
           <div
-            className="hidden sm:block w-px h-6 flex-shrink-0"
-            style={{ background: "var(--brand-light-border)" }}
+            className="hidden sm:block w-px h-7 flex-shrink-0 mr-3"
+            style={{ background: "var(--border-soft)" }}
           />
-          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-7 md:gap-10 flex-1">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start flex-1">
             {partners.map((p, i) => (
               <motion.div
                 key={p.name}
-                className="flex items-center"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                className="flex flex-col items-center px-5 md:px-7 py-1 gap-0.5"
+                style={{
+                  borderRight: i < partners.length - 1 ? "1px solid var(--border-soft)" : "none",
+                }}
+                initial={{ opacity: 0, y: 5 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.07 }}
               >
                 <span
-                  className={p.bold ? "font-display text-sm font-bold tracking-wider" : "font-body text-xs font-semibold tracking-wide"}
-                  style={{ color: "#374151", whiteSpace: "pre-line", textAlign: "center" }}
+                  className="font-display text-sm font-semibold tracking-wide text-center"
+                  style={{ color: "rgba(241,236,220,0.55)" }}
                 >
-                  {p.abbr}
+                  {p.name}
+                </span>
+                <span
+                  className="font-mono text-[8px] tracking-[0.15em] uppercase"
+                  style={{ color: "rgba(159,176,204,0.38)" }}
+                >
+                  {p.sub}
                 </span>
               </motion.div>
             ))}
-          </div>
-          <div className="hidden md:flex items-center flex-shrink-0">
-            <ArrowRight size={14} style={{ color: "#94A3B8" }} />
           </div>
         </div>
       </div>

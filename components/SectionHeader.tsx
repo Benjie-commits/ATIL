@@ -7,7 +7,6 @@ interface SectionHeaderProps {
   subtitle?: string;
   align?: "left" | "center";
   className?: string;
-  onDark?: boolean;
 }
 
 export default function SectionHeader({
@@ -16,11 +15,8 @@ export default function SectionHeader({
   subtitle,
   align = "center",
   className = "",
-  onDark = true,
 }: SectionHeaderProps) {
   const alignClass = align === "center" ? "text-center items-center" : "text-left items-start";
-  const headingColor = onDark ? "var(--brand-text)" : "var(--brand-text-dark)";
-  const subtitleColor = onDark ? "var(--brand-text-muted)" : "var(--brand-text-dark-muted)";
 
   return (
     <motion.div
@@ -32,29 +28,29 @@ export default function SectionHeader({
     >
       {label && (
         <span
-          className="font-mono text-xs tracking-[0.25em] uppercase"
-          style={{ color: "var(--brand-accent)" }}
+          className="font-mono text-[10px] tracking-[0.28em] uppercase"
+          style={{ color: "var(--gold)" }}
         >
-          {label}
+          — {label}
         </span>
       )}
       <h2
         className="font-display text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
-        style={{ color: headingColor }}
+        style={{ color: "var(--text)" }}
       >
         {title}
       </h2>
       {subtitle && (
         <p
           className="text-base md:text-lg max-w-2xl leading-relaxed"
-          style={{ color: subtitleColor }}
+          style={{ color: "var(--text-muted)" }}
         >
           {subtitle}
         </p>
       )}
       <div
-        className="mt-1 h-[3px] w-16 rounded-full"
-        style={{ background: "var(--brand-accent)" }}
+        className="mt-1 h-px w-16"
+        style={{ background: "linear-gradient(to right, var(--gold), transparent)" }}
       />
     </motion.div>
   );
